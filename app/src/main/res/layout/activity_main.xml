@@ -19,12 +19,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpager_main"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                </android.support.v4.view.ViewPager>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                    </android.support.v4.view.ViewPager>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/radioGroup_main_bottom"
+                        >
+
+                        <RadioButton
+                            android:id="@+id/radioButton_main_bottom_one"
+                            style="@style/style_main_bottom_radio_button"
+                            android:drawableTop="@mipmap/ic_nav_feedback"
+                            android:text="@string/radiobutton_main_bottom_one"/>
+                        <RadioButton
+                            android:id="@+id/radioButton_main_bottom_two"
+
+                            style="@style/style_main_bottom_radio_button"
+                            android:drawableTop="@mipmap/ic_nav_feedback"
+                            android:text="首页"/>
+                        <RadioButton
+                            android:id="@+id/radioButton_main_bottom_three"
+
+                            style="@style/style_main_bottom_radio_button"
+                            android:drawableTop="@mipmap/ic_nav_feedback"
+                            android:text="首页"/>
+                        <RadioButton
+                            android:id="@+id/radioButton_main_bottom_four"
+
+                            style="@style/style_main_bottom_radio_button"
+                            android:drawableTop="@mipmap/ic_nav_feedback"
+                            android:text="首页"/>
+
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
 
 
                 <android.support.v7.widget.Toolbar

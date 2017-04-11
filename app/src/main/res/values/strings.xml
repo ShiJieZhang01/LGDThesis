@@ -13,4 +13,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- for main botttom radioButton name-->
+    <string name="radiobutton_main_bottom_one">首页</string>
+    <string name="radiobutton_main_bottom_two">首页</string>
+    <string name="radiobutton_main_bottom_three">首页</string>
+    <string name="radiobutton_main_bottom_four">首页</string>
 </resources>
