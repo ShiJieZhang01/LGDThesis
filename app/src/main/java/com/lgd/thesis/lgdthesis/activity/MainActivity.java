@@ -1,6 +1,7 @@
 package com.lgd.thesis.lgdthesis.activity;
 
 import android.databinding.DataBindingUtil;
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.jakewharton.rxbinding.support.design.widget.RxNavigationView;
 import com.lgd.thesis.lgdthesis.R;
@@ -20,6 +22,8 @@ import com.lgd.thesis.lgdthesis.databinding.ActivityMainBinding;
 import com.lgd.thesis.lgdthesis.databinding.NavDrawerHeaderBinding;
 import com.lgd.thesis.lgdthesis.fragment.FindFragment;
 import com.lgd.thesis.lgdthesis.fragment.HomeFragment;
+import com.lgd.thesis.lgdthesis.fragment.MessageFragment;
+import com.lgd.thesis.lgdthesis.fragment.MyFragment;
 import com.lgd.thesis.lgdthesis.rx.RxActionBarDrawerToggle;
 
 import rx.Observable;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private MyFragmentAdapter myFragmentAdapter;
     private HomeFragment homeFragment;
     private FindFragment findFragment;
+    private MyFragment myFragment;
+    private MessageFragment messageFragment;
     private CompositeSubscription mSubscription = new CompositeSubscription();
 
     @Override
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HomeFragment.newInstance()).commit();
         initFragment();
+        setBottomRadioButtionClick();
 
 
         Observable<Boolean> observable = RxActionBarDrawerToggle.drawerOpen(this, mDrawerLayout, mToolbar);
@@ -79,9 +86,26 @@ public class MainActivity extends AppCompatActivity {
     public void initFragment(){
         homeFragment = new HomeFragment();
         findFragment = new FindFragment();
+        myFragment = new MyFragment();
+        messageFragment = new MessageFragment();
         myFragmentAdapter.addFragment(homeFragment);
         myFragmentAdapter.addFragment(findFragment);
+        myFragmentAdapter.addFragment(messageFragment);
+        myFragmentAdapter.addFragment(myFragment);
         mBinding.viewpagerMain.setAdapter(myFragmentAdapter);
+    }
+
+    public void setBottomRadioButtionClick(){
+
+        mBinding.radioGroupMainBottom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                int index = mBinding.radioGroupMainBottom.indexOfChild(group.findViewById(checkedId));
+                if(mBinding.viewpagerMain != null){
+                    mBinding.viewpagerMain.setCurrentItem(index);
+                }
+            }
+        });
     }
 
     @Override

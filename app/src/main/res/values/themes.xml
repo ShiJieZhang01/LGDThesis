@@ -16,7 +16,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="LgdThesis.Theme.NoActionBar.MainActivity" parent="LgdThesis.Theme.NoActionBar">
+    <style name="LgdThesis.Theme.MainActivity" parent="LgdThesis.Theme">
         <item name="android:windowBackground">@mipmap/ic_bg</item>
     </style>
 
