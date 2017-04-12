@@ -6,7 +6,6 @@
         <item name="colorControlNormal">@color/common_white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/common_white</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="LgdThesis.Theme.NoActionBar" parent="LgdThesis.Theme">

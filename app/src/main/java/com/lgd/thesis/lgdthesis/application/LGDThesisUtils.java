@@ -1,4 +1,4 @@
-package com.lgd.thesis.lgdthesis;
+package com.lgd.thesis.lgdthesis.application;
 
 /**
  * Created by admin on 17/4/11.
