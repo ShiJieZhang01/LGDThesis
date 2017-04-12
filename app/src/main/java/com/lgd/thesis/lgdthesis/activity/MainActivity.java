@@ -1,5 +1,6 @@
 package com.lgd.thesis.lgdthesis.activity;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
@@ -22,8 +23,13 @@ import com.lgd.thesis.lgdthesis.databinding.ActivityMainBinding;
 import com.lgd.thesis.lgdthesis.databinding.NavDrawerHeaderBinding;
 import com.lgd.thesis.lgdthesis.fragment.FindFragment;
 import com.lgd.thesis.lgdthesis.fragment.HomeFragment;
+
 import com.lgd.thesis.lgdthesis.fragment.MessageFragment;
 import com.lgd.thesis.lgdthesis.fragment.MyFragment;
+
+import com.lgd.thesis.lgdthesis.mvp.contract.HomeContract;
+import com.lgd.thesis.lgdthesis.mvp.precenter.HomePresenter;
+
 import com.lgd.thesis.lgdthesis.rx.RxActionBarDrawerToggle;
 
 import rx.Observable;
@@ -31,7 +37,7 @@ import rx.Subscription;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeContract.MvpView{
 
     ActivityMainBinding mBinding;
     private NavigationView mNavigationView;
@@ -41,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private FindFragment findFragment;
     private MyFragment myFragment;
+
     private MessageFragment messageFragment;
+
+
+    private HomeContract.Presenter mPresenter;
+
     private CompositeSubscription mSubscription = new CompositeSubscription();
 
     @Override
@@ -52,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = mBinding.toolbar;
         mDrawerLayout = mBinding.drawerLayout;
         myFragmentAdapter = new MyFragmentAdapter(getSupportFragmentManager());
+
+        mPresenter = new HomePresenter(this);
 
         setUpNavigationView();
         setSupportActionBar(mToolbar);
@@ -87,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         findFragment = new FindFragment();
         myFragment = new MyFragment();
+
         messageFragment = new MessageFragment();
+
         myFragmentAdapter.addFragment(homeFragment);
         myFragmentAdapter.addFragment(findFragment);
         myFragmentAdapter.addFragment(messageFragment);
@@ -145,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
     private void onNavigationMenuItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_rate_us:
-                Log.d("TAG","nav_rate_us");
+                Log.d("TAG","nav_rate_usasda");
+                mPresenter.showName();
                 break;
             case R.id.nav_share_weather:
                 Log.d("TAG","nav_rate_us");
@@ -164,5 +180,15 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    @Override
+    public void attachPresenter(HomeContract.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
